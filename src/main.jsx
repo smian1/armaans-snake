@@ -17,18 +17,20 @@ const DIRECTIONS = {
   ArrowRight: { x: 1, y: 0, name: 'right' },
 };
 
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+
 const TREATS = [
-  { id: 'strawberry', label: 'Strawberry', points: 10, image: '/assets/sprites/strawberry.png' },
-  { id: 'orange', label: 'Orange slice', points: 15, image: '/assets/sprites/orange.png' },
-  { id: 'grapes', label: 'Grapes', points: 20, image: '/assets/sprites/grapes.png' },
-  { id: 'diamond', label: 'Diamond gem', points: 30, image: '/assets/sprites/diamond.png' },
+  { id: 'strawberry', label: 'Strawberry', points: 10, image: assetPath('assets/sprites/strawberry.png') },
+  { id: 'orange', label: 'Orange slice', points: 15, image: assetPath('assets/sprites/orange.png') },
+  { id: 'grapes', label: 'Grapes', points: 20, image: assetPath('assets/sprites/grapes.png') },
+  { id: 'diamond', label: 'Diamond gem', points: 30, image: assetPath('assets/sprites/diamond.png') },
 ];
 
 const SPRITES = {
-  head: '/assets/sprites/snake-head.png',
-  body: '/assets/sprites/snake-body.png',
-  tail: '/assets/sprites/snake-tail.png',
-  star: '/assets/sprites/star.png',
+  head: assetPath('assets/sprites/snake-head.png'),
+  body: assetPath('assets/sprites/snake-body.png'),
+  tail: assetPath('assets/sprites/snake-tail.png'),
+  star: assetPath('assets/sprites/star.png'),
 };
 
 const BEST_SCORE_KEY = 'armaans-snake-best';
@@ -561,7 +563,7 @@ function App() {
 
       <section className="side-panel left-panel" aria-label="Game score and mode">
         <div className="brand-lockup">
-          <img src="/assets/sprites/star.png" alt="" />
+          <img src={SPRITES.star} alt="" />
           <div>
             <h1>Armaan's Snake Garden</h1>
             <p>Eat treats. Dodge walls. Grow huge.</p>
@@ -598,7 +600,7 @@ function App() {
           <SnakeBoard snake={snake} food={food} direction={direction} status={status} assets={assets} pulse={pulse} />
           {status !== 'playing' && (
             <div className="game-message">
-              <img src="/assets/sprites/snake-head.png" alt="" />
+              <img src={SPRITES.head} alt="" />
               <h2>{status === 'gameover' ? 'Bonk! Try again?' : status === 'paused' ? 'Paused' : 'Ready?'}</h2>
               <p>
                 {status === 'gameover'
@@ -634,15 +636,15 @@ function App() {
 
         <section className="tip-card">
           <div className="tip-row">
-            <img src="/assets/sprites/strawberry.png" alt="" />
+            <img src={TREATS[0].image} alt="" />
             <span>Eat fruit and gems.</span>
           </div>
           <div className="tip-row">
-            <img src="/assets/sprites/diamond.png" alt="" />
+            <img src={TREATS[3].image} alt="" />
             <span>Walls always end the game.</span>
           </div>
           <div className="tip-row">
-            <img src="/assets/sprites/snake-body.png" alt="" />
+            <img src={SPRITES.body} alt="" />
             <span>Choose tail rules before playing.</span>
           </div>
         </section>
